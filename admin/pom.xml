@@ -157,10 +157,10 @@
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-framework-web</artifactId>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-common</artifactId>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>core</artifactId>
