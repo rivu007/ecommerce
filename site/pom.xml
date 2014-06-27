@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.mycompany</groupId>
@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- httpsPort and httpPort are used by embeded jetty server.-->
         <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
-        <httpsPort>8443</httpsPort> 
+        <httpsPort>8443</httpsPort>
         <httpPort>8080</httpPort>
     </properties>
     <build>
@@ -38,20 +38,17 @@
                 <configuration>
                     <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
                     <contextPath>/</contextPath>
-                    
+
                     <!-- !!!!! WARNING !!!!!! -->
                     <!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
                         vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
                         in production -->
                     <jettyXml>jetty-server.xml</jettyXml>
-                    <!-- !!!!! WARNING !!!!!! -->
-                    
                     <stopPort>9966</stopPort>
                     <stopKey>foo</stopKey>
                     <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                             <port>${httpPort}</port>
-                            
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                         <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
@@ -62,7 +59,7 @@
                         </connector>
                     </connectors>
                     <webAppConfig>
-                         <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
                     </webAppConfig>
                 </configuration>
             </plugin>
@@ -72,11 +69,11 @@
                 <!-- for Tomcat 7, change to tomcat7-maven-plugin -->
                 <artifactId>tomcat6-maven-plugin</artifactId>
                 <version>2.0-beta-1</version>
-               <!-- <configuration>
-                    <path>/ecommerce</path>
-                    <warSourceDirectory>${webappDirectory}</warSourceDirectory>
-                    <port>8080</port>
-                </configuration>-->
+                <!-- <configuration>
+                       <path>/ecommerce</path>
+                       <warSourceDirectory>${webappDirectory}</warSourceDirectory>
+                       <port>8080</port>
+  -                </configuration>-->
 
                 <configuration>
                     <warSourceDirectory>${webappDirectory}</warSourceDirectory>
@@ -117,10 +114,11 @@
                     <keypass>broadleaf</keypass>
                     <storepass>broadleaf</storepass>
                     <alias>broadleaf</alias>
+
                     <keyalg>RSA</keyalg>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
@@ -145,7 +143,7 @@
             <groupId>com.mycompany</groupId>
             <artifactId>core</artifactId>
         </dependency>
-        <dependency>
+       <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-framework</artifactId>
         </dependency>

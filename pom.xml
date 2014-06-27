@@ -203,13 +203,13 @@
             </dependency>
 
             <!--Broadleaf libraries -->
-            <dependency>
+            <!--<dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-common</artifactId>
                 <version>${blc.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-profile</artifactId>
@@ -316,6 +316,13 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat6-maven-plugin</artifactId>
                 <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.1</version>
+                <type>jar</type>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
