@@ -60,6 +60,25 @@
         </artifact:mvn>
     </target>
 
+    <target name="tomcat-demo-jrebel" depends="start-db">
+        <delete dir="war/WEB-INF/lib"/>
+        <artifact:mvn mavenHome="${maven.home}" fork="true">
+            <jvmarg value="-XX:MaxPermSize=256M" />
+            <jvmarg value="-Xmx512M" />
+            <jvmarg value="-Xdebug" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+            <jvmarg value="-Drebel.root=${project.root}" />
+            <jvmarg value="-Dlogs.dir=${logs.dir}" />
+            <jvmarg value="-noverify" />
+            <jvmarg value="-javaagent:${jrebel.path}" />
+            <jvmarg value="-javaagent:${spring.instrument.path}" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />
+            <arg value="compile"/>
+            <arg value="war:exploded"/>
+            <arg value="tomcat6:run"/>
+        </artifact:mvn>
+    </target>
+
     <target name="jetty-demo-jrebel" depends="start-db">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true">
@@ -102,7 +121,7 @@
     <target name="start-db">
         <!-- Grab the POSTGRES jar and add it to the classpath -->
         <artifact:dependencies filesetId="warDeps">
-            <dependency groupId="postgresql" artifactId="postgresql" version="9.1-901-1.jdbc4" />
+            <dependency groupId="mysql" artifactId="mysql-connector-java" version="5.1.26" />
         </artifact:dependencies>
         <path id="build.runtime.classpath">
             <fileset refid="warDeps"/>
@@ -118,7 +137,7 @@
         <echo message="Execute SQL on new Data Base..." />
     	<!-- Grab the POSTGRES jar and add it to the classpath -->
         <artifact:dependencies filesetId="warDeps">
-            <dependency groupId="postgresql" artifactId="postgresql" version="9.1-901-1.jdbc4" />
+            <dependency groupId="mysql" artifactId="mysql-connector-java" version="5.1.26" />
         </artifact:dependencies>
         <path id="build.runtime.classpath">
             <fileset refid="warDeps"/>
@@ -127,10 +146,10 @@
             autocommit="true"
             print="true"
             classpathref="build.runtime.classpath"
-            driver="org.postgresql.Driver"
-            url="jdbc:postgresql://ci.vpc.tvsapp.info:5432/ecommerce;ifexists=true"
-            userid="tvs"
-            password="test">
+            driver="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/ecommerce;ifexists=true"
+            userid="root"
+            password="">
             <transaction>SHUTDOWN</transaction>
         </sql>
         <echo message="SQL Executed on data base..." />

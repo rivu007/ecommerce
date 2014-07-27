@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The controller responsible for registering a customer
+ * The controller responsible for registering a BroadleafRegisterController
  */
 @Controller
 @RequestMapping("/register")
